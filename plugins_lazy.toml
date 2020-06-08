@@ -332,6 +332,7 @@ on_cmd = 'Dein'
 # }}}
 
 # qfreplace {{{
+[[plugins]]
 repo = 'thinca/vim-qfreplace'
 on_cmd = 'Qfreplace'
 # }}}
