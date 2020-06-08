@@ -1,9 +1,4 @@
 # language setting {{{
-# all {{{
-[[plugins]]
-repo = 'Shougo/neco-syntax'
-on_source = 'deoplete.nvim'
-# }}}
 # golang {{{
 [[plugins]]
 repo = 'fatih/vim-go'
@@ -25,130 +20,13 @@ hook_add = '''
     autocmd FileType go nnoremap <F18> <cmd>GoRun<cr>
 '''
 # }}}
-# python {{{
-[[plugins]]
-repo = 'zchee/deoplete-jedi'
-depends = ['deoplete.nvim']
-on_ft = 'python'
-
-[[plugins]]
-repo = 'davidhalter/jedi-vim'
-on_ft = 'python'
-hook_add = '''
-    let g:jedi#completions_enabled = 0
-'''
-
-# }}}
-# php {{{
-[[plugins]]
-repo = 'StanAngeloff/php.vim'
-on_ft = 'php'
-
-[[plugins]]
-repo = 'phpactor/phpactor'
-build = 'composer install'
-on_ft = 'php'
-
-[[plugins]]
-repo = 'kristijanhusak/deoplete-phpactor'
-depends = ['deoplete.nvim']
-on_ft = 'php'
-# }}}
-# toml {{{
-[[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = 'toml'
-# }}}
-# vim {{{
-[[plugins]]
-repo = 'Shougo/neco-vim'
-on_ft = 'vim'
-# }}}
-# rust {{{
-[[plugins]]
-repo = 'rust-lang/rust.vim'
-on_ft = 'rust'
-hook_source = '''
-    let $RUST_SRC_PATH =
-                \ system('echo -n "$(rustc --print sysroot)"').
-                \ "/lib/rustlib/src/rust/src"
-'''
-
-[[plugins]]
-repo = 'racer-rust/vim-racer'
-on_ft = 'rust'
-hook_add = '''
-    set hidden
-
-    let g:racer_cmd = system('echo -n "$(which racer)"')
-    let g:racer_experimental_completer = 1
-'''
-hook_source = '''
-    au FileType rust nmap gd <Plug>(rust-def)
-    au FileType rust nmap gs <Plug>(rust-def-split)
-    au FileType rust nmap gx <Plug>(rust-def-vertical)
-    au FileType rust nmap <leader>gd <Plug>(rust-doc)
-'''
-# }}}
-# javascript {{{
-[[plugins]]
-repo = 'othree/jspc.vim'
-on_ft = 'javascript'
-
-[[plugins]]
-repo = 'pangloss/vim-javascript'
-on_ft = 'javascript'
-
-[[plugins]]
-repo = 'carlitux/deoplete-ternjs'
-on_ft = 'javascript'
-# }}}
-# c {{{
-[[plugins]]
-repo = 'justinmk/vim-syntax-extra'
-on_ft = ['c', 'lex', 'yacc']
-# }}}
 # html {{{
-[[plugins]]
-repo = 'othree/xml.vim'
-on_ft = ['html', 'xml']
-
 [[plugins]]
 repo = 'AndrewRadev/tagalong.vim'
 on_ft = 'html'
 on_cmd = 'TagalongInit'
 
 # }}}
-# }}}
-
-# ale (async lint engine) {{{
-[[plugins]]
-repo = 'w0rp/ale'
-on_cmd = 'ALEToggle'
-hook_add = '''
-    noremap <F7> <cmd>ALEToggle<cr>
-    let g:ale_enabled = 0
-    let g:ale_completion_enabled = 0
-    let g:ale_fix_on_save = 0
-    let g:ale_linters = {
-                \   'python': ['flake8'],
-                \   'rust': ['rustc', 'cargo'],
-                \   'vim':['vint'],
-                \   'php':['phpcs'],
-                \   'sh': ['shellcheck'],
-                \   'go': ['gobuild']
-                \}
-    " let g:ale_set_loclist = 1
-    let g:ale_set_quickfix = 1
-
-    let g:ale_php_cs_fixer_executable = 'php-cs-fixer'
-'''
-# }}}
-
-# apathy {{{
-[[plugins]]
-repo = 'tpope/vim-apathy'
-on_ft = ['c', 'go']
 # }}}
 
 # vim-sayonara (sane buffer/window deletion) {{{
@@ -254,23 +132,6 @@ hook_add = '''
 '''
 # }}}
 
-# linux coding style {{{
-[[plugins]]
-repo = 'vivien/vim-linux-coding-style'
-on_cmd = 'LinuxCodingStyle'
-# }}}
-
-# vim-autoformat (code formatter) {{{
-[[plugins]]
-repo = 'Chiel92/vim-autoformat'
-on_cmd = 'Autoformat'
-hook_add = '''
-    noremap <F3> <cmd>Autoformat<cr>
-    let g:formatters_python = ['autopep8']
-    let g:formatters_rust = ['rustfmt']
-'''
-# }}}
-
 # undo tree {{{
 repo = 'mbbill/undotree'
 on_cmd = 'UndotreeToggle'
@@ -291,6 +152,7 @@ hook_source = '''
 # neosnippet (snippet) {{{
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
+on_source = 'coc.nvim'
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
@@ -304,31 +166,6 @@ hook_source = '''
 	let g:neosnippet#enable_complete_done = 1
     " let g:snippets_dir = '~/.vim/snippets/,~/.vim/bundle/snipmate/snippets/'
     let g:neosnippet#snippets_directory = expand('~/.config/config/dein/repos/github.com/Shougo/neosnippet-snippets/neosnippets')
-'''
-# }}}
-
-# deoplete (autocomplete) {{{
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-on_event = 'InsertEnter'
-hook_source = '''
-    exe 'source' $NVIMRC.'/config/deoplete.vim'
-    call deoplete#enable()
-'''
-# }}}
-
-# deoplete-tag (tag source for deoplete) {{{
-[[plugins]]
-repo = 'deoplete-plugins/deoplete-tag'
-on_source = 'deoplete.nvim'
-# }}}
-
-# float-preview (preview for deopelte candidates) {{{
-[[plugins]]
-repo = 'ncm2/float-preview.nvim'
-on_source = 'deoplete.nvim'
-hook_source = '''
-  let g:float_preview#docked = 0
 '''
 # }}}
 
@@ -450,13 +287,6 @@ hook_add = '''
 '''
 # }}}
 
-#  tabnine deoplete source {{{
-[[plugins]]
-repo = 'tbodt/deoplete-tabnine'
-build = './install.sh'
-on_source = 'deoplete.nvim'
-# }}}
-
 # rtf highlight {{{
 [[plugins]]
 repo = 'dharanasoft/rtf-highlight'
@@ -482,23 +312,6 @@ hook_add = '''
                 \ : exists('#limelight') ? '<cmd>Limelight!<cr>'
                 \ : '<cmd>Limelight<cr>'
     autocmd! User GoyoLeave Limelight!
-'''
-# }}}
-
-# vim-commentary {{{
-[[plugins]]
-repo = 'tpope/vim-commentary'
-on_map = ['<Plug>Commentary', '<Plug>CommentaryLine']
-on_cmd = 'Commentary'
-hook_add = '''
-    xmap gc  <Plug>Commentary
-    nmap gc  <Plug>Commentary
-    omap gc  <Plug>Commentary
-    nmap gcc <Plug>CommentaryLine
-
-    autocmd FileType toml setlocal commentstring=#\ %s
-    autocmd FileType vim setlocal commentstring=\"\ %s
-    autocmd FileType html setlocal commentstring=\"\ %s
 '''
 # }}}
 
