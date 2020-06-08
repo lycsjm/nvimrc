@@ -1,19 +1,3 @@
-let g:coc_global_extensions = [
-            \ 'coc-diagnostic',
-            \ 'coc-dictionary',
-            \ 'coc-go',
-            \ 'coc-html',
-            \ 'coc-json',
-            \ 'coc-lua',
-            \ 'coc-python',
-            \ 'coc-neosnippet',
-            \ 'coc-snippets',
-            \ 'coc-vimlsp',
-            \ 'coc-word',
-            \ 'coc-xml',
-            \ 'coc-yaml'
-            \ ]
-
 " coc keymapping {{{
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -21,24 +5,71 @@ function! s:check_back_space() abort
 endfunction
 
 function! s:coc_keymapping() abort
-    imap <silent><expr> <TAB>
-                \ pumvisible() ? "\<Down>" :
-                \ (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)" :
-                \ (<SID>check_back_space() ? "\<TAB>" :
-                \ coc#refresh()))
-
-    smap <silent><expr> <TAB>
-                \ pumvisible() ? "\<Down>" :
-                \ (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)" :
-                \ (<SID>check_back_space() ? "\<TAB>" :
-                \ coc#refresh()))
-
-    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
-                \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+    let g:coc_snippet_next = '<tab>'
+    let g:coc_snippet_prev = '<s-tab>'
+    inoremap <silent><expr> <TAB>
+          \ pumvisible() ? "\<Down>" :
+          \ coc#jumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+          \ <SID>check_back_space() ? "\<TAB>" :
+          \ coc#refresh()
+    echom "coc key_mapping"
 endfunction
 " }}}
 
+" coc config {{{
+function! s:coc_config() abort
+    call coc#config('coc.source.around.shortcut',  'A')
+    call coc#config('coc.source.buffer.shortcut',  'B')
+    call coc#config('coc.source.file.shortcut',  'F')
+    call coc#config('suggest', 
+                \ {'autoTrigger': 'none',
+                \  'noselect': v:false,
+                \  'disableMenu': v:false,
+                \  'disableKind': v:true,
+                \  'completionItemKindLabels': {
+                \ "keyword": "\uf1de",
+                \ "variable": "\ue79b",
+                \ "value": "\uf89f",
+                \ "operator": "\u03a8",
+                \ "function": "\u0192",
+                \ "reference": "\ufa46",
+                \ "constant": "\uf8fe",
+                \ "method": "\uf09a",
+                \ "struct": "\ufb44",
+                \ "class": "\uf0e8",
+                \ "interface": "\uf417",
+                \ "text": "\ue612",
+                \ "enum": "\uf435",
+                \ "enumMember": "\uf02b",
+                \ "module": "\uf40d",
+                \ "color": "\ue22b",
+                \ "property": "\ue624",
+                \ "field": "\uf9be",
+                \ "unit": "\uf475",
+                \ "event": "\ufacd",
+                \ "file": "\uf723",
+                \ "folder": "\uf114",
+                \ "snippet": "\ue60b",
+                \ "typeParameter": "\uf728",
+                \ "default": "\uf29c" }
+                \})
+endfunction
+" }}}
 
+" coc lsp {{{
+function! s:coc_lsp_golang() abort
+    call coc#config('go.goplsOptions', {'usePlaceholders': v:true})
+endfunction
+
+function! s:coc_lsp() abort
+    call s:coc_lsp_golang()
+endfunction
+
+" }}}
+
+call s:coc_lsp()
+call s:coc_config()
 call s:coc_keymapping()
+echom 'coc setting'
 
 " vim: set foldmethod=marker tw=80 sw=4 ts=4 sts=4 sta nowrap et :
