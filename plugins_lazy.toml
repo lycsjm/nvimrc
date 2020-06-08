@@ -133,6 +133,7 @@ hook_add = '''
 # }}}
 
 # undo tree {{{
+[[plugins]]
 repo = 'mbbill/undotree'
 on_cmd = 'UndotreeToggle'
 hook_add = '''
