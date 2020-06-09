@@ -152,6 +152,7 @@ hook_add = '''
 '''
 # }}}
 
+# coc.nvim {{{
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 merged = 0
@@ -180,5 +181,6 @@ hook_source = '''
 '''
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
+# }}}
 
 # " vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :

@@ -4,6 +4,26 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+function! s:go_to_definition()
+    silent let ret = CocAction('jumpDefinition')
+    if ret
+        return v:true
+    endif
+    let ret = execute('silent! tag ' . expand('<cword>'))
+    if ret =~ 'Error'
+        " Like gD
+        call searchdecl(expand('<cword>'))
+    endif
+endfunction
+
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute('help '. expand('<cword>'))
+    else
+        call CocAction('doHover')
+    endif
+endfunction
+
 function! s:coc_keymapping() abort
     let g:coc_snippet_next = '<tab>'
     let g:coc_snippet_prev = '<s-tab>'
@@ -12,6 +32,16 @@ function! s:coc_keymapping() abort
           \ coc#jumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
           \ <SID>check_back_space() ? "\<TAB>" :
           \ coc#refresh()
+
+    nmap <silent> gd :call <SID>go_to_definition()<CR>
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+	vmap =  <Plug>(coc-format-selected)
+	nmap =  <Plug>(coc-format-selected)
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+
     echom "coc key_mapping"
 endfunction
 " }}}
