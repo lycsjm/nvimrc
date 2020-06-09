@@ -24,6 +24,17 @@ function! s:show_documentation()
     endif
 endfunction
 
+function! s:format()
+    silent let ret = CocAction('format')
+    if ret
+        return v:true
+    endif
+    if !dein#tap('vim-autoformat')
+        return
+    endif
+    execute('silent Autoformat')
+endfunction
+
 function! s:coc_keymapping() abort
     let g:coc_snippet_next = '<tab>'
     let g:coc_snippet_prev = '<s-tab>'
@@ -33,13 +44,12 @@ function! s:coc_keymapping() abort
           \ <SID>check_back_space() ? "\<TAB>" :
           \ coc#refresh()
 
+    noremap <silent> <F3> :call <SID>format()<CR>
     nmap <silent> gd :call <SID>go_to_definition()<CR>
     nmap <silent> gy <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
     nnoremap <silent> K :call <SID>show_documentation()<CR>
-	vmap =  <Plug>(coc-format-selected)
-	nmap =  <Plug>(coc-format-selected)
     autocmd CursorHold * silent call CocActionAsync('highlight')
 
     echom "coc key_mapping"
