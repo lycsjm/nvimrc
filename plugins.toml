@@ -137,14 +137,6 @@ hook_add = '''
 '''
 # }}}
 
-# session {{{
-[[plugins]]
-repo = 'tpope/vim-obsession'
-hook_source = '''
-    autocmd VimEnter * :Obsession
-'''
-# }}}
-
 # matchup (% enhancement) {{{
 [[plugins]]
 repo = 'andymass/vim-matchup'
@@ -158,11 +150,6 @@ hook_add = '''
                 \ 'html': { 'tagnameonly': 1}
                 \ }
 '''
-# }}}
-
-# vim-scriptease {{{
-[[plugins]]
-repo = 'tpope/vim-scriptease'
 # }}}
 
 [[plugins]]

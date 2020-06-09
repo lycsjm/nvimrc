@@ -228,30 +228,6 @@ hook_add = '''
 '''
 # }}}
 
-# vim-exapnd-region {{{
-[[plugins]]
-repo = 'terryma/vim-expand-region'
-on_map = '<Plug>(expand_region_'
-hook_add = '''
-    map J <Plug>(expand_region_expand)
-    map K <Plug>(expand_region_shrink)
-'''
-# }}}
-
-#  vim-better-whitespace {{{
-[[plugins]]
-repo = 'ntpeters/vim-better-whitespace'
-on_cmd = ['ToggleWhitespace', 'StripWhitespace', 'EnableWhitespace']
-hook_add = '''
-    let g:better_whitespace_ctermcolor='3'
-    let g:better_whitespace_guicolor = '#c8e6c9'
-    let g:better_whitespace_filetypes_blacklist = ['defx', 'help', 'qf', 'diff']
-    nnoremap <silent><expr><F5> exists("g:better_whitespace_enabled") ? ':ToggleWhitespace<cr>' : ':EnableWhitespace<cr>'
-    " <S-F5> for stripping white space
-    nnoremap <F17> <cmd>StripWhitespace<cr>
-'''
-# }}}
-
 # cscope in quickfixwindow {{{
 [[plugins]]
 repo = 'ronakg/quickr-cscope.vim'
