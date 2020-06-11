@@ -154,8 +154,7 @@ hook_add = '''
 # coc.nvim {{{
 [[plugins]]
 repo = 'neoclide/coc.nvim'
-merged = 0
-rev  = 'release'
+build = 'yarn install --frozen-lockfile'
 hook_add = '''
     let g:coc_start_at_startup = 1
     let g:coc_data_home = expand('$CACHE/coc')
