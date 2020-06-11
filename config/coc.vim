@@ -101,8 +101,16 @@ function! s:coc_lsp_golang() abort
     call coc#config('go.goplsOptions', {'usePlaceholders': v:true})
 endfunction
 
+function! s:coc_lsp_python() abort
+    call coc#config('python', {
+                \ 'venvPath': '~/.pyenv',
+                \ 'jediEnabled': v:false
+                \ })
+endfunction
+
 function! s:coc_lsp() abort
     call s:coc_lsp_golang()
+    call s:coc_lsp_python()
 endfunction
 
 " }}}
