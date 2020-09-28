@@ -159,7 +159,7 @@ return require('packer').startup(function()
 
     use {'tpope/vim-unimpaired'}
 
-    use {'tpope/vim-fugitive'}
+    use {'tpope/vim-fugitive', cmd = {'Gstatus'}}
 
     use {'junegunn/fzf', run = 'sh ./install' }
     use {'junegunn/fzf.vim', config = function()
