@@ -256,7 +256,8 @@ return require('packer').startup(function()
     use {'thinca/vim-qfreplace', cmd = 'Qfreplace'}
 
     use {'mhinz/vim-signify', setup = function()
-        vim.cmd [[exe 'source' $NVIMRC.'/config/signify.vim']]
+        vim.cmd [[nmap ]c <plug>(signify-next-hunk)]]
+        vim.cmd [[nmap [c <plug>(signify-prev-hunk)]]
     end}
 
     use {'fatih/vim-go', ft = 'go', run = ':GoUpdateBinaries', setup = function()
