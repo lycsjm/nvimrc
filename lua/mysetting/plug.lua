@@ -149,7 +149,7 @@ return require('packer').startup(function()
         vim.g.matchup_matchpref = {html =  { tagnameonly = 1}}
     end}
 
-    use{'tpope/vim-endwise', setup = function()
+    use{'tpope/vim-endwise', event = 'InsertEnter *', setup = function()
         vim.g.endwise_no_mappings = 1
     end}
 
