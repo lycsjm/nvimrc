@@ -1,6 +1,9 @@
 vim.cmd [[packadd packer.nvim]]
 vim._update_package_paths()
 
+-- do not load matchit
+vim.g.loaded_matchit = 0
+
 return require('packer').startup(function()
     use {'wbthomason/packer.nvim'}
 
@@ -138,7 +141,7 @@ return require('packer').startup(function()
         }
     end}
 
-    use{'andymass/vim-matchup', setup = function()
+    use{'andymass/vim-matchup', keys = {'%'}, setup = function()
         vim.g.matchup_matchparen_enabled = 1
         vim.g.matchup_surround_enabled = 1
         vim.g.matchup_matchparen_offscreen = {method = 'popup'}
