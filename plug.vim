@@ -228,7 +228,7 @@ nnoremap <silent> <leader>q <cmd>Sayonara<CR>
 
 " defx file explorer {{{
 Plug 'Shougo/defx.nvim', {'on': 'Defx'}
-autocmd MyAutoCmd BufLeave,BufWinLeave  \[defx\]* call defx#call_action('add_session')
+autocmd BufLeave,BufWinLeave  \[defx\]* call defx#call_action('add_session')
 autocmd User defx.nvim exe 'source' $NVIMRC.'/config/defx.vim'
 autocmd MyAutoCmd FileType defx call MyDefxKeySetup()
 noremap <silent><F4> <cmd>Defx -session-file='/tmp/defx_session' -buffer-name="defx"<CR>

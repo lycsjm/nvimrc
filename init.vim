@@ -1,4 +1,2 @@
-let $NVIMRC=fnamemodify(expand('<sfile>'), ':h')
-let $CACHE=expand('$HOME/.cache')
-exe 'source' $NVIMRC.'/basic.vim'
+lua require('mysetting')
 exe 'source' $NVIMRC.'/plug.vim'
