@@ -399,7 +399,7 @@ return require('packer').startup(function()
         vim.cmd [[exe 'source' $NVIMRC.'/config/completion_nvim.vim']]
     end}
 
-    use {'nvim-lua/completion-nvim', event = 'InsertEnter *', setup = function()
+    use {'nvim-lua/completion-nvim', setup = function()
         vim.g.completion_auto_change_source = 1
         vim.g.completion_enable_auto_popup = 0
         vim.g.completion_enable_auto_signature = 1
@@ -411,7 +411,7 @@ return require('packer').startup(function()
             {complete_items = {'buffers'}},
         }
     end}
-    use {'steelsojka/completion-buffers', event = 'InsertEnter *'}
+    use {'steelsojka/completion-buffers'}
     use {'hrsh7th/vim-vsnip'}
     use {'hrsh7th/vim-vsnip-integ', setup = function()
         vim.g.vsnip_snippet_dir = vim.env.NVIMRC .. '/vsnippets'
