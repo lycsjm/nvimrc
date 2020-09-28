@@ -98,7 +98,7 @@ return require('packer').startup(function()
         vim.cmd [[map F <Plug>Sneak_S]]
     end}
 
-    use {'dense-analysis/ale', setup = function()
+    use {'dense-analysis/ale', cmd = 'ALEEnable' ,setup = function()
         vim.g.ale_completion_enabled = 0
         vim.g.ale_fix_on_save = 0
         vim.g.ale_linters = {
@@ -357,7 +357,7 @@ return require('packer').startup(function()
         local on_attach_vim_js = function(client)
             require'completion'.on_attach()
             lsp_status.on_attach(client)
-            vim.fn['ale#toggle#Enable']()
+            vim.cmd [[ALEEnable]]
             lsp_keymap()
         end
 
