@@ -31,10 +31,10 @@ vim.o.diffopt = [[filler,vertical,algorithm:patience,context:3,foldcolumn:0]]
 
 --Remember cursor position between vim sessions
 vim.cmd [[
-    autocmd BufReadPost *
-            \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-            \   exe "normal! g'\"" |
-            \ endif
+autocmd BufReadPost *
+\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+\   exe "normal! g'\"" |
+\ endif
 ]]
 
 
@@ -218,31 +218,31 @@ vim.o.wildmode = "full"
 vim.o.wildoptions = "pum,tagfile"
 
 
- -- Enables pseudo-transparency for a floating window
+-- Enables pseudo-transparency for a floating window
 vim.o.winblend = 20
- -- Set minimal width for current window.
+-- Set minimal width for current window.
 -- vim.o.winwidth = 30
- -- Set minimal height for current window.
+-- Set minimal height for current window.
 -- vim.o.winheight = 20
- -- Set maximam maximam command line window.
+-- Set maximam maximam command line window.
 vim.o.cmdwinheight =5
- -- No equal window size.
+-- No equal window size.
 vim.o.equalalways = true
 
 
- -- Don't redraw while executing macros (good performance config)
+-- Don't redraw while executing macros (good performance config)
 vim.o.lazyredraw = true
 
- -- Adjust window size of preview and help.
+-- Adjust window size of preview and help.
 vim.o.previewheight = 5
 vim.o.helpheight = 12
 
 vim.o.shortmess = vim.o.shortmess .. 'c'
 
- -- Add a bit extra margin to the left
+-- Add a bit extra margin to the left
 vim.o.foldcolumn = "1"
 
- -- Confiugre white space
+-- Confiugre white space
 vim.o.shiftwidth = 4 -- indent width
 vim.o.tabstop = 4    -- tab width
 vim.o.softtabstop = 4
