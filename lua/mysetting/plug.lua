@@ -210,11 +210,16 @@ return require('packer').startup(function()
     vim.cmd [[nnoremap <silent> <leader>q <cmd>Sayonara<CR>]]
   end}
 
-  use {'Shougo/defx.nvim', cmd = 'Defx', setup = function()
-    vim.cmd [[autocmd BufLeave,BufWinLeave  \[defx\]* call defx#call_action('add_session')]]
-    vim.cmd [[noremap <silent><F4> <cmd>Defx -session-file='/tmp/defx_session' -buffer-name="defx"<CR>]]
-    vim.cmd [[autocmd FileType defx lua require('mysetting.config.defx')]]
-  end}
+  use {'Shougo/defx.nvim', cmd = 'Defx',
+      setup = function()
+        vim.cmd [[autocmd FileType defx lua require('mysetting.config.defx').keymapping()]]
+        vim.cmd [[autocmd BufLeave,BufWinLeave  \[defx\]* call defx#call_action('add_session')]]
+        vim.cmd [[noremap <silent><F4> <cmd>Defx -session-file='/tmp/defx_session' -buffer-name="defx"<CR>]]
+        vim.cmd [[autocmd FileType defx lua require('mysetting.config.defx')]]
+      end,
+      config = function()
+          require('mysetting.config.defx').setting()
+      end}
 
   use {'Raimondi/delimitMate', event = 'InsertEnter *', setup = function()
     vim.g.delimitMate_expand_space = 1

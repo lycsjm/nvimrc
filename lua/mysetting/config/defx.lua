@@ -4,9 +4,8 @@ local mapper = function(mode, lhs, rhs, opts)
     vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, opts)
 end
 
-
-
-local keymapping = function()
+local M = {}
+M.keymapping = function()
     mapper('n', '<CR>',
         [[defx#is_directory()?]]..
         [[defx#do_action('open_or_close_tree'):]]..
@@ -81,7 +80,7 @@ local keymapping = function()
         {noremap = true, expr = true, silent = true})
 end
 
-local setting = function()
+ M.setting = function()
     fn['defx#custom#column']('icon', {
             directory_icon = '▸',
             opened_icon =  '▾',
@@ -109,7 +108,5 @@ local setting = function()
         })
 end
 
-keymapping()
-setting()
-
+return M
 
