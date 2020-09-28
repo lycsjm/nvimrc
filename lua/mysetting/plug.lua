@@ -28,8 +28,8 @@ return require('packer').startup(function()
   use {'glts/vim-textobj-comment'}
   use {'sgur/vim-textobj-parameter'}
 
-    
-  -- vim operator 
+
+  -- vim operator
   use {'kana/vim-operator-user'}
   use {'kana/vim-operator-replace'}
 
@@ -153,7 +153,7 @@ return require('packer').startup(function()
   use{'tpope/vim-commentary'}
 
   use {'tpope/vim-dispatch', cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
-  
+
   use {'tpope/vim-unimpaired'}
 
   use {'tpope/vim-fugitive'}
@@ -263,19 +263,19 @@ return require('packer').startup(function()
     vim.cmd [[autocmd Filetype go nmap <buffer> gR <Plug>(go-rename)]]
     vim.cmd [[autocmd Filetype go nmap <buffer> gr <Plug>(go-referrers)]]
     vim.cmd [[autocmd Filetype go nmap <buffer> <leader>gm <Plug>(go-metalinter)]]
-    
+
     vim.g.go_metalinter_command = "golangci-lint"
     vim.g.go_metalinter_enabled = {'vet', 'errcheck', 'staticcheck', 'gosimple'}
     vim.g.go_metalinter_autosave_enabled = {'vet', 'errcheck', 'staticcheck', 'gosimple'}
     vim.g.go_metalinter_autosave = 0
     vim.g.go_jump_to_error = 0
-    
+
     vim.g.o_echo_go_info = 0
     vim.g.go_auto_type_info = 1
     vim.g.go_fmt_command = "goimports"
     vim.g.go_fmt_autosave = 1
     vim.g.go_guru_scope = {[[...]]}
-    
+
     vim.cmd [[autocmd Filetype go nmap <buffer> <f16> <Plug>(go-test)]]
     vim.cmd [[autocmd Filetype go nmap <buffer> <f17> <Plug>(go-build)]]
     vim.cmd [[autocmd Filetype go nmap <buffer> <f18> <Plug>(go-run)]]
@@ -331,7 +331,7 @@ return require('packer').startup(function()
     vim.cmd [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
     vim.cmd [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
 
-    local lsp_keymap = function() 
+    local lsp_keymap = function()
         local mapper = function(mode, key, result)
           vim.fn.nvim_buf_set_keymap(0, mode, key, result, {noremap=true, silent=true})
         end
@@ -396,7 +396,6 @@ return require('packer').startup(function()
     vim.cmd [[exe 'source' $NVIMRC.'/config/completion_nvim.vim']]
   end}
 
-
   use {'nvim-lua/completion-nvim', event = 'InsertEnter *', setup = function()
     vim.g.completion_auto_change_source = 1
     vim.g.completion_enable_auto_popup = 0
@@ -414,7 +413,5 @@ return require('packer').startup(function()
   use {'hrsh7th/vim-vsnip-integ', setup = function()
     vim.g.vsnip_snippet_dir = vim.env.NVIMRC .. '/vsnippets'
   end}
-  
-
 
 end)
