@@ -90,7 +90,7 @@ vim.o.wrap = true
 
 -- show special character
 vim.wo.list = true
-vim.o.listchars = [[eol:¬,tab:▸\ ,trail:.]]
+vim.o.listchars = [[eol:¬,tab:▸ ,trail:.]]
 
 -- search as characters are entered
 vim.o.incsearch = true
